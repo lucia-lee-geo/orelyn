@@ -40,6 +40,12 @@ Do not include:
 - `.env`, credentials, tokens or account metadata
 - unrelated GEORIN project files
 
+## Published repository
+
+- Repository: https://github.com/lucia-lee-geo/orelyn
+- Release: https://github.com/lucia-lee-geo/orelyn/releases/tag/v1.0.0
+- Package: https://github.com/lucia-lee-geo/orelyn/releases/download/v1.0.0/ORELYN-local.zip
+
 ## Release 1.0.0
 
 Title: `ORELYN 1.0.0 — Offline registry and resumable local sync`
