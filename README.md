@@ -112,3 +112,5 @@ Contact: lijingxin.geo@outlook.com
 ## License and reuse
 
 No OSI license has been selected for this repository. Source availability does not imply permission for unrestricted copying, redistribution or commercial reuse. Dataset licenses and attribution duties remain with their respective providers and are recorded in `registry.json`.
+
+See `COPYRIGHT.txt` for original-asset protection and `CITATION.cff` for the standard software citation.

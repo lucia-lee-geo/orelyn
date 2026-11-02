@@ -1,0 +1,15 @@
+ORELYN — Copyright and Attribution Notice
+
+Copyright (c) 2026 LUCIA LEE (李镜馨). All rights reserved.
+
+The original ORELYN source code, standalone HTML application, interface design, product icon, author avatar, article cover, documentation and other original creative assets are protected by copyright.
+
+Public technical sharing does not waive these rights. Except where applicable law provides otherwise, no permission is granted to remove attribution, misrepresent authorship, redistribute modified versions as the original, rebrand the product, sell the original or derivative works, or use the original assets in a misleading product or service without the author's explicit written permission.
+
+This notice does not grant an OSI-approved open-source license. Source availability on GitHub is not, by itself, a grant of unrestricted copying, modification, redistribution or commercial use.
+
+Third-party dataset names, endpoints and license references are metadata used for research and provenance. Their providers retain all applicable rights. Each dataset remains subject to its provider's license, attribution and usage terms, which must be checked independently before reuse.
+
+Author: LUCIA LEE (李镜馨)
+Contact: lijingxin.geo@outlook.com
+Repository: https://github.com/lucia-lee-geo/orelyn

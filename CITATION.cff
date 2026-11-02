@@ -1,0 +1,12 @@
+cff-version: 1.2.0
+title: ORELYN
+type: software
+message: "ORELYN: Local-first public data registry, incremental sync and provenance."
+authors:
+  - family-names: LEE
+    given-names: LUCIA
+    email: lijingxin.geo@outlook.com
+version: 1.0.0
+date-released: 2026-11-02
+url: https://github.com/lucia-lee-geo/orelyn
+repository-code: https://github.com/lucia-lee-geo/orelyn
