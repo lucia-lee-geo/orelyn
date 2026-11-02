@@ -1,0 +1,13 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 128 128" role="img" aria-labelledby="title desc">
+  <title id="title">LUCIA LEE — Mirror monogram</title>
+  <desc id="desc">An original tilted mirror frame, reflected L forms, hand-drawn terrain curves and a gold light point inspired by 镜</desc>
+  <rect width="128" height="128" rx="30" fill="#111A1C"/>
+  <g transform="rotate(-12 64 64)">
+    <ellipse cx="64" cy="64" rx="43" ry="53" fill="none" stroke="#D5A75A" stroke-width="2.4"/>
+    <path d="M44 35v43h22" fill="none" stroke="#F1F4ED" stroke-width="6" stroke-linecap="square" stroke-linejoin="miter"/>
+    <path d="M84 35v43H62" fill="none" stroke="#D5A75A" stroke-width="6" stroke-linecap="square" stroke-linejoin="miter"/>
+    <path d="M34 82c17 17 42 19 61 5" fill="none" stroke="#52D6B2" stroke-width="2.5" stroke-linecap="round"/>
+    <path d="M38 92c15 12 34 13 49 4" fill="none" stroke="#F1F4ED" stroke-opacity=".55" stroke-width="1.5" stroke-linecap="round"/>
+    <circle cx="96" cy="22" r="4" fill="#D5A75A"/>
+  </g>
+</svg>

@@ -1,0 +1,10 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64" role="img" aria-labelledby="title desc">
+  <title id="title">ORELYN original strata loop mark</title>
+  <desc id="desc">Three nested open geological contours linked by one continuous provenance path</desc>
+  <rect width="64" height="64" rx="15" fill="#111A1C"/>
+  <path d="M47 17C40 11 28 11 20 17C11 24 12 39 21 46C29 52 42 49 47 42" fill="none" stroke="#F1F4ED" stroke-width="2.7" stroke-linecap="round"/>
+  <path d="M42 22C37 18 28 18 23 23C17 29 19 39 26 43C32 47 40 44 43 39" fill="none" stroke="#D5A75A" stroke-width="2.7" stroke-linecap="round"/>
+  <path d="M35 28C31 25 26 28 26 32C26 37 32 40 36 37" fill="none" stroke="#F1F4ED" stroke-width="2.7" stroke-linecap="round"/>
+  <path d="M47 42l5 1-1-6" fill="none" stroke="#D5A75A" stroke-width="2.7" stroke-linecap="round" stroke-linejoin="round"/>
+  <circle cx="47" cy="17" r="2.5" fill="#D5A75A"/>
+</svg>

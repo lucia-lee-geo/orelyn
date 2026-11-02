@@ -1,0 +1,443 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta http-equiv="Content-Security-Policy" content="default-src 'self' data:; img-src 'self' data:; style-src 'self' 'unsafe-inline'; script-src 'self' 'unsafe-inline'; connect-src 'self'; font-src 'self'; object-src 'none'; base-uri 'none'; form-action 'self'">
+  <meta name="description" content="ORELYN — local-first public mining data registry, license matrix, incremental sync and provenance evidence.">
+  <meta name="author" content="LUCIA LEE (李镜馨)">
+  <meta name="theme-color" content="#111a1c">
+  <title>ORELYN — Public Mining Data, with Provenance</title>
+  <link rel="icon" href="data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHZpZXdCb3g9IjAgMCA2NCA2NCIgcm9sZT0iaW1nIiBhcmlhLWxhYmVsbGVkYnk9InRpdGxlIGRlc2MiPgogIDx0aXRsZSBpZD0idGl0bGUiPk9SRUxZTiBvcmlnaW5hbCBzdHJhdGEgbG9vcCBtYXJrPC90aXRsZT4KICA8ZGVzYyBpZD0iZGVzYyI+VGhyZWUgbmVzdGVkIG9wZW4gZ2VvbG9naWNhbCBjb250b3VycyBsaW5rZWQgYnkgb25lIGNvbnRpbnVvdXMgcHJvdmVuYW5jZSBwYXRoPC9kZXNjPgogIDxyZWN0IHdpZHRoPSI2NCIgaGVpZ2h0PSI2NCIgcng9IjE1IiBmaWxsPSIjMTExQTFDIi8+CiAgPHBhdGggZD0iTTQ3IDE3QzQwIDExIDI4IDExIDIwIDE3QzExIDI0IDEyIDM5IDIxIDQ2QzI5IDUyIDQyIDQ5IDQ3IDQyIiBmaWxsPSJub25lIiBzdHJva2U9IiNGMUY0RUQiIHN0cm9rZS13aWR0aD0iMi43IiBzdHJva2UtbGluZWNhcD0icm91bmQiLz4KICA8cGF0aCBkPSJNNDIgMjJDMzcgMTggMjggMTggMjMgMjNDMTcgMjkgMTkgMzkgMjYgNDNDMzIgNDcgNDAgNDQgNDMgMzkiIGZpbGw9Im5vbmUiIHN0cm9rZT0iI0Q1QTc1QSIgc3Ryb2tlLXdpZHRoPSIyLjciIHN0cm9rZS1saW5lY2FwPSJyb3VuZCIvPgogIDxwYXRoIGQ9Ik0zNSAyOEMzMSAyNSAyNiAyOCAyNiAzMkMyNiAzNyAzMiA0MCAzNiAzNyIgZmlsbD0ibm9uZSIgc3Ryb2tlPSIjRjFGNEVEIiBzdHJva2Utd2lkdGg9IjIuNyIgc3Ryb2tlLWxpbmVjYXA9InJvdW5kIi8+CiAgPHBhdGggZD0iTTQ3IDQybDUgMS0xLTYiIGZpbGw9Im5vbmUiIHN0cm9rZT0iI0Q1QTc1QSIgc3Ryb2tlLXdpZHRoPSIyLjciIHN0cm9rZS1saW5lY2FwPSJyb3VuZCIgc3Ryb2tlLWxpbmVqb2luPSJyb3VuZCIvPgogIDxjaXJjbGUgY3g9IjQ3IiBjeT0iMTciIHI9IjIuNSIgZmlsbD0iI0Q1QTc1QSIvPgo8L3N2Zz4K" type="image/svg+xml">
+  <style>
+:root{--navy:#111a1c;--navy-soft:#1b2b2e;--gold:#d5a75a;--paper:#f4f5f0;--white:#fff;--line:#dce2d9;--ink:#152124;--muted:#6d7c75;--green:#3d9b7a}*{box-sizing:border-box}html{scroll-behavior:smooth}body{margin:0;background:var(--paper);color:var(--ink);font-family:Inter,"Segoe UI","PingFang SC","Microsoft YaHei",sans-serif;-webkit-font-smoothing:antialiased}a{color:inherit;text-decoration:none}button,input,select{font:inherit}button{cursor:pointer}.shell{width:min(1180px,calc(100% - 64px));margin-inline:auto}.sr-only{position:absolute;width:1px;height:1px;padding:0;margin:-1px;overflow:hidden;clip:rect(0,0,0,0);white-space:nowrap;border:0}.site-header{width:min(1320px,calc(100% - 64px));height:82px;margin-inline:auto;display:flex;align-items:center;gap:30px}.brand{display:flex;align-items:center;gap:11px}.brand img{display:block}.brand>span{display:flex;flex-direction:column;gap:4px}.brand strong{font-size:18px;letter-spacing:3px}.brand small{color:#83928a;font-size:7px;font-weight:650;letter-spacing:1.1px}.main-nav{display:flex;gap:27px;margin-left:auto}.main-nav a{color:#667a72;font-size:12px}.main-nav a:hover{color:#16826a}.language-select{padding:8px 10px;border:1px solid var(--line);border-radius:7px;background:transparent;color:#40584e;font-size:10px}.local-badge{display:flex;align-items:center;gap:8px;padding:7px 10px;border:1px solid var(--line);border-radius:99px;color:#61776b;font-size:8px;font-weight:700;letter-spacing:1px}.status-dot{width:6px;height:6px;border-radius:50%;background:#36b28a;box-shadow:0 0 0 4px rgba(54,178,138,.1)}.hero{display:grid;grid-template-columns:1.08fr .92fr;align-items:center;gap:70px;min-height:600px;padding-block:70px}.eyebrow,.section-kicker{display:flex;align-items:center;gap:10px;margin:0 0 20px;color:#778b81;font-size:9px;font-weight:700;letter-spacing:1.8px}.eyebrow>span{width:24px;height:2px;background:var(--gold)}.hero h1{margin:0;font-size:clamp(44px,5vw,65px);font-weight:590;line-height:1.1;letter-spacing:-2.5px}.hero h1 em{display:block;margin-top:12px;color:#9d773d;font-style:normal}.hero-intro{max-width:580px;margin:26px 0 30px;color:#667a72;font-size:14px;line-height:1.9}.hero-actions{display:flex;flex-wrap:wrap;gap:12px}.button{min-height:44px;display:inline-flex;align-items:center;justify-content:center;gap:20px;padding:0 17px;border:1px solid transparent;border-radius:7px;font-size:11px;font-weight:650;transition:transform .2s,background .2s,border-color .2s}.button:hover{transform:translateY(-1px)}.button.primary{background:var(--navy);color:#fff}.button.primary:hover{background:#25413e}.button.secondary{border-color:#cbd7cd;background:rgba(255,255,255,.55);color:#2b5042}.button.secondary:hover{border-color:#7f9c89}.hero-principles{display:flex;flex-wrap:wrap;gap:20px;margin-top:30px;color:#84938b;font-size:8px;font-weight:700;letter-spacing:1.2px}.evidence-card{padding:27px;border:1px solid #2e4141;border-radius:15px;background:var(--navy);color:#eef3ed;box-shadow:0 25px 70px rgba(17,26,28,.14)}.evidence-top{display:flex;justify-content:space-between;align-items:center;gap:12px;color:#8da19a;font-size:8px;font-weight:700;letter-spacing:1px}.evidence-status{padding:5px 7px;border:1px solid #3c5c50;border-radius:4px;color:#83c2a8;font-size:7px}.evidence-card h2{margin:28px 0 8px;font-size:24px;letter-spacing:-.6px}.evidence-card>p{margin:0;color:#8fa49b;font-size:10px}.evidence-metrics{display:grid;grid-template-columns:1fr 1fr;gap:24px;margin-block:28px}.evidence-metrics>div{display:flex;flex-direction:column;gap:6px;padding-bottom:16px;border-bottom:1px solid #2c4141}.evidence-metrics strong{color:var(--gold);font-size:30px;font-weight:500;letter-spacing:-1px}.evidence-metrics span{color:#8fa49b;font-size:9px}.evidence-foot{display:flex;justify-content:space-between;gap:15px;color:#758e84;font-size:8px}.principle-strip{display:grid;grid-template-columns:repeat(3,1fr);margin-bottom:75px;border-block:1px solid var(--line)}.principle-strip article{position:relative;min-height:150px;padding:27px 27px 25px 0;border-right:1px solid var(--line)}.principle-strip article:not(:first-child){padding-left:27px}.principle-strip article:last-child{border-right:0}.principle-strip article>span{color:#a87f40;font-size:9px}.principle-strip strong{display:block;margin-top:15px;font-size:15px}.principle-strip p{margin:9px 0 0;color:#71827a;font-size:11px;line-height:1.7}.section-heading{display:grid;grid-template-columns:1.15fr .85fr;align-items:end;gap:70px;margin-bottom:35px}.section-heading h2{max-width:650px;margin:0;font-size:34px;line-height:1.25;letter-spacing:-1px}.section-heading>p{margin:0;color:#6e8078;font-size:12px;line-height:1.85}.section-kicker{margin-bottom:13px;color:#8d9a92;font-size:8px}.registry-section{padding-bottom:80px}.registry-tools{display:grid;grid-template-columns:1fr auto auto auto;gap:10px;margin-bottom:18px}.search-field input,.registry-tools select{width:100%;min-height:41px;padding:0 12px;border:1px solid #d5dfd5;border-radius:7px;background:#fff;color:#334d42;font-size:11px}.search-field input::placeholder{color:#8d9b94}.sync-toggle{display:flex;align-items:center;gap:7px;padding:0 10px;color:#53695e;font-size:10px;white-space:nowrap}.registry-summary{display:flex;justify-content:space-between;align-items:center;margin-bottom:10px;color:#83928a;font-size:8px;font-weight:650;letter-spacing:.8px}.table-wrap{overflow-x:auto;border:1px solid var(--line);border-radius:11px;background:#fff}.source-table{width:100%;border-collapse:collapse;text-align:left}.source-table th{padding:14px 17px;border-bottom:1px solid var(--line);color:#84938c;font-size:8px;font-weight:700;letter-spacing:1px;white-space:nowrap}.source-table td{padding:17px;border-bottom:1px solid #e7ece5;color:#5a6e64;font-size:10px;line-height:1.6;vertical-align:middle}.source-table tr:last-child td{border-bottom:0}.source-table tbody tr:hover{background:#f8faf6}.source-name{display:flex;align-items:center;gap:12px;min-width:230px}.source-icon{display:grid;place-items:center;width:34px;height:34px;flex:0 0 auto;border-radius:8px;background:#edf2e9;color:#657b60;font-size:9px;font-weight:750}.source-name strong{display:block;color:#172b24;font-size:11px}.source-name small{display:block;margin-top:3px;color:#87968e;font-size:8px}.license-pill,.sync-pill{display:inline-flex;padding:4px 7px;border-radius:4px;background:#e7f3e9;color:#23785c;font-size:7px;font-weight:700;letter-spacing:.4px;white-space:nowrap}.license-pill.review{background:#f7ead7;color:#9b6827}.sync-pill{margin-top:5px;background:#edf0ed;color:#75857c}.sync-pill.enabled{background:#e1eee6;color:#39785b}.detail-button{padding:6px 9px;border:1px solid #cbd8cd;border-radius:6px;background:transparent;color:#29634d;font-size:9px;white-space:nowrap}.detail-button:hover{border-color:#5a8d70}.empty-state{padding:45px;text-align:center;border:1px dashed #cbd7cd;border-radius:10px;color:#6d8076;font-size:12px}.text-button{display:block;margin:15px auto 0;border:0;background:transparent;color:#16826a;font-size:11px;text-decoration:underline}.license-section{padding-bottom:80px}.license-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:15px}.license-grid article{padding:25px;border:1px solid var(--line);border-radius:11px;background:#fff}.license-grid article.review-card{border-top:3px solid #c18e45}.license-code{color:#987436;font-size:8px;font-weight:750;letter-spacing:1px}.license-grid h3{margin:20px 0 12px;font-size:17px;line-height:1.4}.license-grid p{margin:0;color:#697c72;font-size:11px;line-height:1.8}.provenance-section{padding-block:80px;background:var(--navy);color:#eff4ef}.section-heading.light h2{color:#eff4ef}.section-heading.light>p{color:#91a59b}.lineage-list{border-top:1px solid #314342}.lineage-list article{display:grid;grid-template-columns:45px 1fr auto;gap:20px;align-items:center;min-height:128px;padding:24px 0;border-bottom:1px solid #2a3c3c}.lineage-index{color:var(--gold);font-size:10px}.lineage-list strong{color:var(--gold);font-size:8px;font-weight:700;letter-spacing:1.3px;text-transform:uppercase}.lineage-list h3{margin:9px 0 8px;font-size:17px}.lineage-list p{margin:0;color:#94a99f;font-size:11px;line-height:1.7}.lineage-list small{color:#728b7f;font-size:9px}.cli-section{padding-block:80px}.cli-layout{display:grid;grid-template-columns:1.15fr .85fr;gap:18px}.terminal-card{overflow:hidden;border-radius:13px;background:#101b1e;color:#dce8df}.terminal-top{display:flex;justify-content:space-between;align-items:center;padding:14px 19px;border-bottom:1px solid #2a3b3e;color:#718f82;font-size:9px}.terminal-copy{padding:5px 8px;border:1px solid #3b514a;border-radius:5px;background:transparent;color:#a4c1b0;font-size:8px}.terminal-card pre{margin:0;padding:24px 22px;overflow-x:auto;font-family:"Cascadia Code",Consolas,monospace;font-size:12px;line-height:2}.terminal-card code{color:#d8bb78}.terminal-notes{display:flex;flex-wrap:wrap;gap:8px;padding:0 22px 20px}.terminal-notes span{padding:5px 7px;border:1px solid #2e4343;border-radius:4px;color:#83a293;font-size:8px}.state-card{padding:25px;border:1px solid var(--line);border-radius:13px;background:#fff}.state-label{color:#8a9b91;font-size:8px;font-weight:700;letter-spacing:1px}.state-card h3{margin:17px 0 11px;font-size:19px}.state-card>p{margin:0 0 18px;color:#6d8077;font-size:11px;line-height:1.8}.state-summary{margin-top:18px;padding-top:15px;border-top:1px solid var(--line);color:#52695d;font-size:10px;line-height:1.8}.state-summary strong{display:block;margin-bottom:6px;color:#182c24}.guide-section{padding-bottom:85px}.guide-grid{display:grid;grid-template-columns:1fr 1fr;gap:15px}.guide-grid article{padding:23px;border-top:1px solid #cbd7ce}.guide-grid article>span{color:#a27c41;font-size:9px}.guide-grid h3{margin:17px 0 10px;font-size:16px}.guide-grid p{margin:0;color:#697d73;font-size:11px;line-height:1.8}.source-dialog{width:min(680px,calc(100vw - 32px));padding:30px;border:1px solid #d4dfd5;border-radius:15px;background:#f9fbf7;color:var(--ink);box-shadow:0 30px 100px rgba(17,26,28,.25)}.source-dialog::backdrop{background:rgba(17,26,28,.45);backdrop-filter:blur(3px)}.dialog-close{position:absolute;top:15px;right:15px;width:29px;height:29px;border:1px solid #cdd9cf;border-radius:7px;background:transparent;color:#53695d;font-size:18px}.dialog-source-kicker{color:#987436;font-size:8px;font-weight:700;letter-spacing:1px}.dialog-source-title{margin:15px 0 7px;font-size:25px;line-height:1.25}.dialog-publisher{color:#72857a;font-size:11px}.dialog-facts{display:grid;grid-template-columns:1fr 1fr;gap:18px;margin-block:24px}.dialog-facts>div{display:flex;flex-direction:column;gap:6px;padding:13px;border:1px solid var(--line);border-radius:8px}.dialog-facts span{color:#87958d;font-size:8px;letter-spacing:.7px}.dialog-facts strong,.dialog-facts a{color:#294d3d;font-size:11px;line-height:1.6;overflow-wrap:anywhere}.dialog-facts a{text-decoration:underline}.dialog-note{padding:16px;border-left:2px solid var(--gold);background:#eef2e9;color:#5d7165;font-size:11px;line-height:1.8}.dialog-actions{display:flex;flex-wrap:wrap;gap:9px;margin-top:22px}.dialog-actions .button{min-height:38px;font-size:10px}.toast{position:fixed;right:22px;bottom:22px;z-index:100;padding:12px 16px;border-radius:8px;background:#111a1c;color:#f0f4ef;box-shadow:0 12px 40px rgba(17,26,28,.2);font-size:11px}.site-footer{min-height:105px;display:flex;align-items:center;justify-content:space-between;gap:25px;border-top:1px solid var(--line)}.footer-brand{display:flex;align-items:center;gap:11px}.footer-brand>div{display:flex;flex-direction:column;gap:4px}.footer-brand strong{font-size:12px;letter-spacing:2px}.footer-brand span{color:#819189;font-size:9px}.footer-contact{display:flex;flex-direction:column;align-items:flex-end;gap:5px;color:#84938b;font-size:9px}.footer-contact a{color:#33715a}@media(max-width:1050px){.main-nav{gap:17px}.local-badge{display:none}.hero{grid-template-columns:1fr 400px;gap:40px}.hero h1{font-size:48px}.registry-tools{grid-template-columns:1fr 1fr}.sync-toggle{justify-content:flex-start}}@media(max-width:800px){.shell{width:min(100% - 36px,600px)}.site-header{width:calc(100% - 36px);gap:14px}.main-nav{display:none}.language-select{margin-left:auto}.hero{grid-template-columns:1fr;gap:40px;padding-block:55px}.hero h1{font-size:46px}.evidence-card{max-width:520px}.principle-strip{grid-template-columns:1fr}.principle-strip article,.principle-strip article:not(:first-child){min-height:0;padding:22px 0;border-right:0;border-bottom:1px solid var(--line)}.principle-strip article:last-child{border-bottom:0}.section-heading{grid-template-columns:1fr;gap:18px}.section-heading h2{font-size:29px}.license-grid,.cli-layout{grid-template-columns:1fr}.registry-tools{grid-template-columns:1fr}.guide-grid{grid-template-columns:1fr}.lineage-list article{grid-template-columns:32px 1fr}.lineage-list small{grid-column:2}.site-footer{align-items:flex-start;flex-direction:column;justify-content:center;padding-block:25px}.footer-contact{align-items:flex-start}}@media(max-width:480px){.hero h1{font-size:39px;letter-spacing:-1.6px}.hero-intro{font-size:13px}.hero-actions{flex-direction:column;align-items:stretch}.button{justify-content:space-between}.evidence-metrics{gap:18px}.evidence-top{font-size:6px}.registry-summary{align-items:flex-start;flex-direction:column;gap:6px}.source-dialog{padding:22px}.dialog-facts{grid-template-columns:1fr}.source-table th:nth-child(2),.source-table td:nth-child(2),.source-table th:nth-child(4),.source-table td:nth-child(4){display:none}}@media(prefers-reduced-motion:reduce){html{scroll-behavior:auto}.button{transition:none}}
+
+</style>
+  <script>
+window.ORELYN_REGISTRY = {
+  "schemaVersion": "1.0.0",
+  "registryVersion": "2026.11.02",
+  "evidenceReference": "1006/source/datapack_v130plus/manifest.json",
+  "sources": [
+    {
+      "id": "ga-particle-size",
+      "name": "NGSA Particle Size Data",
+      "publisher": "Geoscience Australia",
+      "category": "Geochemistry",
+      "access": "HTTPS / CSV",
+      "endpoint": "https://d28rz98at9flks.cloudfront.net/74284/particle_size_data.csv",
+      "filename": "particle_size_data.csv",
+      "license": "CC BY 3.0 AU",
+      "licenseUrl": "https://creativecommons.org/licenses/by/3.0/au/",
+      "licenseClass": "open",
+      "attribution": "Commonwealth of Australia (Geoscience Australia)",
+      "usageNote": "Attribution required. Public availability is not treated as permission to omit credit.",
+      "syncEnabled": true,
+      "reviewCycleDays": 30,
+      "evidenceDate": "2026-09-28",
+      "evidenceRef": "datapack_v130plus/manifest.json"
+    },
+    {
+      "id": "ga-isotope-rec2011",
+      "name": "NT Isotope Geochemistry Rec2011_020",
+      "publisher": "Geoscience Australia",
+      "category": "Geochronology",
+      "access": "HTTPS / CSV",
+      "endpoint": "https://d28rz98at9flks.cloudfront.net/82869/Rec2011_020_110706.csv",
+      "filename": "Rec2011_020_110706.csv",
+      "license": "CC BY 3.0 AU",
+      "licenseUrl": "https://creativecommons.org/licenses/by/3.0/au/",
+      "licenseClass": "open",
+      "attribution": "Commonwealth of Australia (Geoscience Australia)",
+      "usageNote": "Attribution required. Preserve the original dataset identity in derivatives.",
+      "syncEnabled": true,
+      "reviewCycleDays": 30,
+      "evidenceDate": "2026-09-28",
+      "evidenceRef": "datapack_v130plus/manifest.json"
+    },
+    {
+      "id": "ga-ngsa-144101",
+      "name": "NGSA Geochemical Sample 144101",
+      "publisher": "Geoscience Australia",
+      "category": "Geochemistry",
+      "access": "HTTPS / CSV",
+      "endpoint": "https://d28rz98at9flks.cloudfront.net/144101/144101_00_0.csv",
+      "filename": "144101_00_0.csv",
+      "license": "CC BY 3.0 AU",
+      "licenseUrl": "https://creativecommons.org/licenses/by/3.0/au/",
+      "licenseClass": "open",
+      "attribution": "Commonwealth of Australia (Geoscience Australia)",
+      "usageNote": "Attribution required. Do not describe a downloaded subset as the complete national dataset.",
+      "syncEnabled": true,
+      "reviewCycleDays": 30,
+      "evidenceDate": "2026-09-28",
+      "evidenceRef": "datapack_v130plus/manifest.json"
+    },
+    {
+      "id": "nt-mineral-occurrences",
+      "name": "NT Mineral Occurrences",
+      "publisher": "Northern Territory Geological Survey",
+      "category": "Mineral occurrences",
+      "access": "HTTPS / ZIP",
+      "endpoint": "https://geoscience.nt.gov.au/contents/prod/Downloads/Mineral_Deposits/MINERALOCCURRENCES_csv.zip",
+      "filename": "MINERALOCCURRENCES_csv.zip",
+      "license": "CC BY 4.0",
+      "licenseUrl": "https://creativecommons.org/licenses/by/4.0/",
+      "licenseClass": "open",
+      "attribution": "Northern Territory Government",
+      "usageNote": "Attribution required. Resume support is tested before a file is marked complete.",
+      "syncEnabled": true,
+      "reviewCycleDays": 30,
+      "evidenceDate": "2026-09-28",
+      "evidenceRef": "datapack_v130plus/manifest.json"
+    },
+    {
+      "id": "auscope-earthbank",
+      "name": "AuScope EarthBank / Lithodat",
+      "publisher": "AuScope EarthBank / Lithodat Pty Ltd",
+      "category": "Geochemistry & geochronology",
+      "access": "OGC WFS",
+      "endpoint": "https://public.lithodat.com/geoserver/wfs",
+      "filename": "",
+      "license": "CC BY 4.0",
+      "licenseUrl": "https://creativecommons.org/licenses/by/4.0/",
+      "licenseClass": "open",
+      "attribution": "AuScope EarthBank (Lithodat Pty Ltd)",
+      "usageNote": "Attribution required. WFS queries must be bounded; no unbounded full-service crawl.",
+      "syncEnabled": false,
+      "reviewCycleDays": 90,
+      "evidenceDate": "2026-09-28",
+      "evidenceRef": "datapack_v130plus/manifest.json"
+    },
+    {
+      "id": "ntgs-wfs",
+      "name": "NTGS Geological Data Services",
+      "publisher": "Northern Territory Geological Survey",
+      "category": "Geology & boreholes",
+      "access": "OGC WFS",
+      "endpoint": "https://geology.data.nt.gov.au/geoserver/wfs",
+      "filename": "",
+      "license": "CC BY 4.0",
+      "licenseUrl": "https://creativecommons.org/licenses/by/4.0/",
+      "licenseClass": "open",
+      "attribution": "Northern Territory Government (NT Geological Survey)",
+      "usageNote": "Attribution required. Query-specific acquisition is separated from service availability.",
+      "syncEnabled": false,
+      "reviewCycleDays": 90,
+      "evidenceDate": "2026-10-08",
+      "evidenceRef": "1006/metadata/入库与本地服务_20261008.md"
+    },
+    {
+      "id": "ga-earthresource",
+      "name": "GA Earth Resource Services",
+      "publisher": "Geoscience Australia",
+      "category": "Mineral resources",
+      "access": "OGC WFS",
+      "endpoint": "https://services.ga.gov.au/gis/earthresource/wfs",
+      "filename": "",
+      "license": "CC BY 4.0",
+      "licenseUrl": "https://creativecommons.org/licenses/by/4.0/",
+      "licenseClass": "open",
+      "attribution": "Geoscience Australia",
+      "usageNote": "Attribution required. WFS availability does not imply unrestricted bulk extraction.",
+      "syncEnabled": false,
+      "reviewCycleDays": 90,
+      "evidenceDate": "2026-09-28",
+      "evidenceRef": "datapack_v130plus/manifest.json"
+    },
+    {
+      "id": "copernicus-stac",
+      "name": "Copernicus via Element84 Earth Search",
+      "publisher": "ESA Copernicus / Element84",
+      "category": "Elevation & imagery",
+      "access": "STAC",
+      "endpoint": "https://earth-search.aws.element84.com/v1",
+      "filename": "",
+      "license": "License status requires review",
+      "licenseUrl": "https://dataspace.copernicus.eu/conditions-data-use",
+      "licenseClass": "review",
+      "attribution": "Element84 / ESA Copernicus",
+      "usageNote": "Automatic download is disabled until the dataset-specific terms and the manifest's proprietary flag are reconciled.",
+      "syncEnabled": false,
+      "reviewCycleDays": 30,
+      "evidenceDate": "2026-09-28",
+      "evidenceRef": "datapack_v130plus/manifest.json"
+    }
+  ]
+};
+
+</script>
+  <script>
+"use strict";
+
+const registry = window.ORELYN_REGISTRY;
+const translations = {
+  "zh-CN": {
+    "nav.registry":"数据注册表","nav.provenance":"溯源证据","nav.cli":"CLI 同步","nav.guide":"使用边界",
+    "hero.titleStart":"公开数据只是起点。","hero.titleEm":"可溯源，才可使用。","hero.intro":"面向矿业数据的来源注册、许可复核、增量更新与可复算证据，不把公开可访问笼统表述为可任意使用。","hero.explore":"浏览数据注册表 ↓","hero.cli":"执行增量同步","evidence.subtitle":"历史项目证据，不代表实时服务连接。","metric.layers":"治理图层","metric.rasters":"栅格图层","metric.checks":"对账检查","metric.evidence":"证据图层",
+    "principle.public":"公开可访问","principle.publicText":"通过授权接口可以访问数据源。","principle.license":"使用授权","principle.licenseText":"独立审查许可、署名与使用限制。","principle.update":"更新证据","principle.updateText":"ETag、时间戳、字节数和 SHA-256 共同说明变化。",
+    "registry.title":"先了解来源，再开始同步。","registry.intro":"每条记录分别标注访问方式、法律元数据、获取模式和证据日期，许可待复核的数据绝不自动下载。","search.placeholder":"搜索发布机构、数据集或类别…","filter.allLicenses":"全部许可状态","filter.open":"开放许可元数据","filter.review":"需要复核","filter.allCategories":"全部类别","filter.sync":"仅看可直接同步","registry.snapshot":"注册表快照 · 2026-11-02","table.source":"数据源","table.access":"访问方式","table.license":"许可","table.review":"复核周期","table.action":"操作","empty.title":"没有符合筛选条件的数据源。","empty.clear":"清除筛选",
+    "license.title":"公开可读，不等于随意使用。","license.intro":"ORELYN 记录元数据以辅助复核，不替代法律意见或数据提供方的最新条款。","license.attribution":"署名是工作流的一部分","license.attributionText":"GA CSV 记录保留发布机构、许可地址与可复制的署名文本，供技术文章和派生成果使用。","license.services":"服务可访问不等于允许批量抓取","license.servicesText":"WFS 数据只标注有界查询，不把服务可用理解为无限制爬取的许可。","license.review":"元数据冲突会停止自动化","license.reviewText":"Copernicus 清单中存在 proprietary 标记，在数据集具体条款核对一致前，自动同步保持禁用。",
+    "provenance.title":"成果应能解释自己如何形成。","provenance.intro":"Pine Creek 证据链以明确阶段和日期呈现历史验证，不用一句“数据已处理”掩盖过程。","lineage.acquire":"来源登记","lineage.acquireText":"登记 30 个源文件及其来源、访问方式和获取元数据。","lineage.clean":"治理与归一","lineage.cleanText":"通过记录的清洗与坐标规则派生 40 个图层和 19 个栅格。","lineage.store":"PostGIS 对账镜像","lineage.storeText":"治理文件与本地数据库之间完成 44/44 项检查。","lineage.publish":"本地 OGC 服务","lineage.publishText":"WMS 59/59、代表性 WFS 40/40 检查，不宣称已上线公有云。","lineage.evidence":"分析就绪证据","lineage.evidenceText":"20 个证据图层携带来源谱系进入后续矿业分析。",
+    "cli.title":"低频监控，安全续传。","cli.intro":"CLI 使用条件请求和 Range 续传，不把部分文件标为完成，也不假定服务端一定支持续传。","cli.copy":"复制命令","state.title":"检查自己的同步证据","state.text":"选择 CLI 生成的 registry-state.json，文件只在浏览器本地读取，不会上传。","state.load":"载入 registry-state.json",
+    "guide.title":"有用的自动化，始于清晰边界。","guide.intro":"ORELYN 是本地获取与证据工具，不是公共数据再分发服务，也不是法律判定引擎。","guide.authorized":"仅按授权获取","guide.authorizedText":"仅请求公开或授权端点，设置超时与有界并发，不绕过凭据控制。","guide.resume":"部分不等于完成","guide.resumeText":".part 文件表示未完成传输，只有完整响应才会计算哈希并移入只读源区。","guide.legal":"元数据不是法律意见","guide.legalText":"许可标签用于辅助复核，复用或发布前仍需确认提供方最新条款与署名义务。","guide.local":"本地证据，不是实时状态","guide.localText":"HTML 快照默认离线，只有显式运行 CLI 检查后才会报告实时可用性。"
+  }
+};
+
+let elements;
+
+function translated(key) {
+  const language = elements.language.value;
+  return translations[language]?.[key] || document.querySelector(`[data-i18n="${key}"]`)?.textContent || key;
+}
+
+function applyLanguage() {
+  document.documentElement.lang = elements.language.value;
+  document.querySelectorAll("[data-i18n]").forEach(element => {
+    const key = element.dataset.i18n;
+    if (!element.dataset.i18nDefault) element.dataset.i18nDefault = element.textContent.trim();
+    element.textContent = translations[elements.language.value]?.[key] || element.dataset.i18nDefault;
+  });
+  document.querySelector("#source-search").placeholder = elements.language.value === "zh-CN" ? "搜索发布机构、数据集或类别…" : "Search publisher, dataset or category…";
+  try { localStorage.setItem("orelyn.language", elements.language.value); } catch { /* optional storage */ }
+}
+
+function element(tag, className, text) {
+  const node = document.createElement(tag);
+  if (className) node.className = className;
+  if (text !== undefined) node.textContent = text;
+  return node;
+}
+
+function sourceCode(source) {
+  if (source.publisher.includes("Geoscience Australia")) return "GA";
+  if (source.publisher.includes("Northern Territory")) return "NT";
+  if (source.publisher.includes("AuScope")) return "AE";
+  return "CO";
+}
+
+function renderSources() {
+  const query = elements.search.value.trim().toLowerCase();
+  const license = elements.license.value;
+  const category = elements.category.value;
+  const syncOnly = elements.sync.checked;
+  const sources = registry.sources.filter(source => {
+    const matchesQuery = !query || `${source.name} ${source.publisher} ${source.category}`.toLowerCase().includes(query);
+    return matchesQuery && (license === "all" || source.licenseClass === license) && (category === "all" || source.category === category) && (!syncOnly || source.syncEnabled);
+  });
+  elements.rows.replaceChildren();
+  for (const source of sources) {
+    const row = element("tr");
+    const nameCell = element("td");
+    const nameWrap = element("div", "source-name");
+    nameWrap.append(element("span", "source-icon", sourceCode(source)));
+    const nameText = element("div");
+    nameText.append(element("strong", "", source.name), element("small", "", source.publisher));
+    nameWrap.append(nameText); nameCell.append(nameWrap);
+    const accessCell = element("td");
+    accessCell.append(element("div", "", source.access));
+    accessCell.append(element("span", `sync-pill ${source.syncEnabled ? "enabled" : ""}`, source.syncEnabled ? "DIRECT SYNC" : "QUERY ONLY"));
+    const licenseCell = element("td");
+    licenseCell.append(element("span", `license-pill ${source.licenseClass === "review" ? "review" : ""}`, source.license));
+    const cycleCell = element("td", "", `${source.reviewCycleDays} days`);
+    const actionCell = element("td");
+    const button = element("button", "detail-button", elements.language.value === "zh-CN" ? "查看" : "Details");
+    button.type = "button"; button.addEventListener("click", () => showSource(source));
+    actionCell.append(button);
+    row.append(nameCell, accessCell, licenseCell, cycleCell, actionCell);
+    elements.rows.append(row);
+  }
+  elements.count.textContent = `${sources.length} / ${registry.sources.length} sources`;
+  elements.empty.hidden = sources.length > 0;
+}
+
+function fact(label, value, link = null) {
+  const box = element("div");
+  box.append(element("span", "", label));
+  if (link) {
+    const anchor = element("a", "", value);
+    anchor.href = link; anchor.target = "_blank"; anchor.rel = "noopener noreferrer";
+    box.append(anchor);
+  } else box.append(element("strong", "", value));
+  return box;
+}
+
+async function copyText(text, confirmation = "Copied") {
+  try {
+    await navigator.clipboard.writeText(text);
+  } catch {
+    const area = document.createElement("textarea"); area.value = text; document.body.append(area); area.select();
+    document.execCommand("copy"); area.remove();
+  }
+  const toast = document.querySelector("#toast"); toast.textContent = confirmation; toast.hidden = false;
+  window.setTimeout(() => { toast.hidden = true; }, 1800);
+}
+
+function showSource(source) {
+  elements.dialogContent.replaceChildren();
+  const kicker = element("span", "dialog-source-kicker", `${source.category} / ${source.access}`);
+  const title = element("h2", "dialog-source-title", source.name);
+  const publisher = element("p", "dialog-publisher", source.publisher);
+  const facts = element("div", "dialog-facts");
+  facts.append(
+    fact("LICENSE", source.license, source.licenseUrl),
+    fact("ATTRIBUTION", source.attribution),
+    fact("REVIEW CYCLE", `${source.reviewCycleDays} days`),
+    fact("EVIDENCE DATE", source.evidenceDate),
+    fact("ACCESS", source.access, source.endpoint),
+    fact("SYNC POLICY", source.syncEnabled ? "Incremental download enabled" : "Bounded query only"),
+  );
+  const note = element("p", "dialog-note", source.usageNote);
+  const actions = element("div", "dialog-actions");
+  const citation = element("button", "button primary", "Copy attribution"); citation.type = "button";
+  citation.addEventListener("click", () => copyText(`${source.name} — ${source.attribution}. ${source.license}. ${source.endpoint}`, "Attribution copied"));
+  const endpoint = element("button", "button secondary", "Copy endpoint"); endpoint.type = "button";
+  endpoint.addEventListener("click", () => copyText(source.endpoint, "Endpoint copied"));
+  actions.append(citation, endpoint);
+  elements.dialogContent.append(kicker, title, publisher, facts, note, actions);
+  elements.dialog.showModal();
+}
+
+function initializeFilters() {
+  const categories = [...new Set(registry.sources.map(source => source.category))].sort();
+  for (const category of categories) elements.category.append(element("option", "", category));
+  elements.category.value = "all";
+  [elements.search, elements.license, elements.category, elements.sync].forEach(control => control.addEventListener("input", renderSources));
+  document.querySelector("#clear-filters").addEventListener("click", () => {
+    elements.search.value = ""; elements.license.value = "all"; elements.category.value = "all"; elements.sync.checked = false; renderSources();
+  });
+  document.querySelector("#close-dialog").addEventListener("click", () => elements.dialog.close());
+  elements.dialog.addEventListener("click", event => { if (event.target === elements.dialog) elements.dialog.close(); });
+}
+
+function initializeStateImport() {
+  const input = document.querySelector("#state-file");
+  document.querySelector("#load-state").addEventListener("click", () => input.click());
+  input.addEventListener("change", async () => {
+    const file = input.files[0];
+    if (!file) return;
+    try {
+      const state = JSON.parse(await file.text());
+      const summary = document.querySelector("#state-summary");
+      summary.replaceChildren();
+      summary.append(element("strong", "", `Snapshot: ${state.generatedAt || "unknown"}`));
+      const checks = Object.keys(state.checks || {}).length;
+      const downloads = Object.keys(state.downloads || {}).length;
+      summary.append(element("span", "", `${checks} endpoint checks · ${downloads} downloaded source records · local file only`));
+      summary.hidden = false;
+    } catch {
+      const summary = document.querySelector("#state-summary");
+      summary.textContent = "Invalid registry-state.json";
+      summary.hidden = false;
+    }
+  });
+}
+
+function initialize() {
+  elements = {
+    rows: document.querySelector("#source-rows"), count: document.querySelector("#registry-count"),
+    search: document.querySelector("#source-search"), license: document.querySelector("#license-filter"),
+    category: document.querySelector("#category-filter"), sync: document.querySelector("#sync-filter"),
+    empty: document.querySelector("#empty-state"), dialog: document.querySelector("#source-dialog"),
+    dialogContent: document.querySelector("#dialog-content"), language: document.querySelector("#language-select"),
+  };
+  let saved = "en";
+  try { saved = localStorage.getItem("orelyn.language") || "en"; } catch { /* optional storage */ }
+  elements.language.value = saved === "zh-CN" ? "zh-CN" : "en";
+  elements.language.addEventListener("change", () => { applyLanguage(); renderSources(); });
+  applyLanguage();
+  initializeFilters();
+  renderSources();
+  initializeStateImport();
+  document.querySelector("#copy-commands").addEventListener("click", () => copyText("python cli.py check\npython cli.py sync --source ga-particle-size\npython cli.py status\npython cli.py watch --interval-hours 24", "Commands copied"));
+}
+
+document.addEventListener("DOMContentLoaded", () => {
+  try { initialize(); } catch (error) { console.error(error.stack); throw error; }
+});
+
+</script>
+</head>
+<body>
+  <header class="site-header">
+    <a class="brand" href="index.html" aria-label="ORELYN home"><img src="data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHZpZXdCb3g9IjAgMCA2NCA2NCIgcm9sZT0iaW1nIiBhcmlhLWxhYmVsbGVkYnk9InRpdGxlIGRlc2MiPgogIDx0aXRsZSBpZD0idGl0bGUiPk9SRUxZTiBvcmlnaW5hbCBzdHJhdGEgbG9vcCBtYXJrPC90aXRsZT4KICA8ZGVzYyBpZD0iZGVzYyI+VGhyZWUgbmVzdGVkIG9wZW4gZ2VvbG9naWNhbCBjb250b3VycyBsaW5rZWQgYnkgb25lIGNvbnRpbnVvdXMgcHJvdmVuYW5jZSBwYXRoPC9kZXNjPgogIDxyZWN0IHdpZHRoPSI2NCIgaGVpZ2h0PSI2NCIgcng9IjE1IiBmaWxsPSIjMTExQTFDIi8+CiAgPHBhdGggZD0iTTQ3IDE3QzQwIDExIDI4IDExIDIwIDE3QzExIDI0IDEyIDM5IDIxIDQ2QzI5IDUyIDQyIDQ5IDQ3IDQyIiBmaWxsPSJub25lIiBzdHJva2U9IiNGMUY0RUQiIHN0cm9rZS13aWR0aD0iMi43IiBzdHJva2UtbGluZWNhcD0icm91bmQiLz4KICA8cGF0aCBkPSJNNDIgMjJDMzcgMTggMjggMTggMjMgMjNDMTcgMjkgMTkgMzkgMjYgNDNDMzIgNDcgNDAgNDQgNDMgMzkiIGZpbGw9Im5vbmUiIHN0cm9rZT0iI0Q1QTc1QSIgc3Ryb2tlLXdpZHRoPSIyLjciIHN0cm9rZS1saW5lY2FwPSJyb3VuZCIvPgogIDxwYXRoIGQ9Ik0zNSAyOEMzMSAyNSAyNiAyOCAyNiAzMkMyNiAzNyAzMiA0MCAzNiAzNyIgZmlsbD0ibm9uZSIgc3Ryb2tlPSIjRjFGNEVEIiBzdHJva2Utd2lkdGg9IjIuNyIgc3Ryb2tlLWxpbmVjYXA9InJvdW5kIi8+CiAgPHBhdGggZD0iTTQ3IDQybDUgMS0xLTYiIGZpbGw9Im5vbmUiIHN0cm9rZT0iI0Q1QTc1QSIgc3Ryb2tlLXdpZHRoPSIyLjciIHN0cm9rZS1saW5lY2FwPSJyb3VuZCIgc3Ryb2tlLWxpbmVqb2luPSJyb3VuZCIvPgogIDxjaXJjbGUgY3g9IjQ3IiBjeT0iMTciIHI9IjIuNSIgZmlsbD0iI0Q1QTc1QSIvPgo8L3N2Zz4K" alt="" width="36" height="36"><span><strong>ORELYN</strong><small>PUBLIC MINING DATA, WITH PROVENANCE</small></span></a>
+    <nav class="main-nav" aria-label="Primary navigation">
+      <a href="#registry" data-i18n="nav.registry">Registry</a><a href="#provenance" data-i18n="nav.provenance">Provenance</a><a href="#cli" data-i18n="nav.cli">CLI Sync</a><a href="#guide" data-i18n="nav.guide">Guide</a>
+    </nav>
+    <select id="language-select" class="language-select" aria-label="Language"><option value="en">English</option><option value="zh-CN">简体中文</option></select>
+    <span class="local-badge"><span class="status-dot"></span>LOCAL-FIRST</span>
+  </header>
+
+  <main>
+    <section class="hero shell">
+      <div class="hero-copy">
+        <p class="eyebrow"><span></span>PUBLIC MINING DATA / LOCAL-FIRST</p>
+        <h1><span data-i18n="hero.titleStart">Public data is only the start.</span><em data-i18n="hero.titleEm">Provenance makes it usable.</em></h1>
+        <p class="hero-intro" data-i18n="hero.intro">A source-aware registry for mining data acquisition, license review, incremental updates and reproducible evidence — without turning public access into a blanket usage claim.</p>
+        <div class="hero-actions"><a class="button primary" href="#registry" data-i18n="hero.explore">Explore the registry <span>↓</span></a><a class="button secondary" href="#cli" data-i18n="hero.cli">Run an incremental sync</a></div>
+        <div class="hero-principles"><span>SOURCE-AWARE</span><span>LICENSE-GATED</span><span>RESUMABLE</span></div>
+      </div>
+      <aside class="evidence-card">
+        <div class="evidence-top"><span>PROJECT EVIDENCE / 001</span><span class="evidence-status">VERIFIED LOCALLY</span></div>
+        <h2>Pine Creek / Mt Bundy</h2><p data-i18n="evidence.subtitle">Historical project evidence, not a live service connection.</p>
+        <div class="evidence-metrics"><div><strong>40</strong><span data-i18n="metric.layers">governed layers</span></div><div><strong>19</strong><span data-i18n="metric.rasters">raster layers</span></div><div><strong>44/44</strong><span data-i18n="metric.checks">reconciliations</span></div><div><strong>20</strong><span data-i18n="metric.evidence">evidence layers</span></div></div>
+        <div class="evidence-foot"><span>2026-10-08</span><span>WMS 59/59 · WFS 40/40</span></div>
+      </aside>
+    </section>
+
+    <section class="principle-strip shell"><article><span>01</span><strong data-i18n="principle.public">Public access</strong><p data-i18n="principle.publicText">The source can be reached through an authorized interface.</p></article><article><span>02</span><strong data-i18n="principle.license">Usage rights</strong><p data-i18n="principle.licenseText">License, attribution and restrictions are reviewed independently.</p></article><article><span>03</span><strong data-i18n="principle.update">Update evidence</strong><p data-i18n="principle.updateText">ETag, timestamps, byte counts and SHA-256 explain what changed.</p></article></section>
+
+    <section id="registry" class="registry-section shell">
+      <div class="section-heading"><div><p class="section-kicker">01 / SOURCE REGISTRY</p><h2 data-i18n="registry.title">Know the source before the sync.</h2></div><p data-i18n="registry.intro">Each record separates access method, legal metadata, acquisition mode and evidence date. License-pending sources are never downloaded automatically.</p></div>
+      <div class="registry-tools">
+        <label class="search-field"><span class="sr-only">Search sources</span><input id="source-search" type="search" placeholder="Search publisher, dataset or category…" data-i18n-placeholder="search.placeholder"></label>
+        <select id="license-filter" aria-label="License filter"><option value="all" data-i18n="filter.allLicenses">All license states</option><option value="open" data-i18n="filter.open">Open license metadata</option><option value="review" data-i18n="filter.review">Review required</option></select>
+        <select id="category-filter" aria-label="Category filter"><option value="all" data-i18n="filter.allCategories">All categories</option></select>
+        <label class="sync-toggle"><input id="sync-filter" type="checkbox"><span data-i18n="filter.sync">Direct sync only</span></label>
+      </div>
+      <div class="registry-summary"><span id="registry-count">8 sources</span><span data-i18n="registry.snapshot">REGISTRY SNAPSHOT · 2026-11-02</span></div>
+      <div class="table-wrap"><table class="source-table"><thead><tr><th data-i18n="table.source">Source</th><th data-i18n="table.access">Access</th><th data-i18n="table.license">License</th><th data-i18n="table.review">Review cycle</th><th data-i18n="table.action">Action</th></tr></thead><tbody id="source-rows"></tbody></table></div>
+      <div id="empty-state" class="empty-state" hidden><strong data-i18n="empty.title">No sources match these filters.</strong><button id="clear-filters" class="text-button" type="button" data-i18n="empty.clear">Clear filters</button></div>
+    </section>
+
+    <section class="license-section shell">
+      <div class="section-heading"><div><p class="section-kicker">02 / LEGAL METADATA</p><h2 data-i18n="license.title">Open to read is not open to assume.</h2></div><p data-i18n="license.intro">ORELYN records metadata to support review, not to replace legal advice or the provider’s current terms.</p></div>
+      <div class="license-grid"><article><span class="license-code">CC BY 3.0 AU</span><h3 data-i18n="license.attribution">Attribution is part of the workflow</h3><p data-i18n="license.attributionText">GA CSV records retain publisher identity, license URL and a copy-ready attribution string for technical articles and derivatives.</p></article><article><span class="license-code">CC BY 4.0</span><h3 data-i18n="license.services">Service access is not bulk permission</h3><p data-i18n="license.servicesText">WFS sources are marked for bounded queries only. ORELYN does not treat an available service as an invitation for unbounded crawling.</p></article><article class="review-card"><span class="license-code">REVIEW REQUIRED</span><h3 data-i18n="license.review">Conflicting metadata stops automation</h3><p data-i18n="license.reviewText">The Copernicus manifest contains a proprietary flag. Automatic sync stays disabled until dataset-specific terms are reconciled.</p></article></div>
+    </section>
+
+    <section id="provenance" class="provenance-section">
+      <div class="shell">
+        <div class="section-heading light"><div><p class="section-kicker">03 / PROVENANCE</p><h2 data-i18n="provenance.title">A result should explain how it came to be.</h2></div><p data-i18n="provenance.intro">The Pine Creek evidence chain is presented as historical proof, with explicit stages and dates instead of a vague “data was processed” statement.</p></div>
+        <div class="lineage-list">
+          <article><span class="lineage-index">01</span><div><strong>Acquire</strong><h3 data-i18n="lineage.acquire">Source registration</h3><p data-i18n="lineage.acquireText">30 source files registered with origin, access method and acquisition metadata.</p></div><small>2026-10-06</small></article>
+          <article><span class="lineage-index">02</span><div><strong>Clean</strong><h3 data-i18n="lineage.clean">Governance & normalization</h3><p data-i18n="lineage.cleanText">40 layers and 19 rasters derived through documented cleaning and CRS rules.</p></div><small>2026-10-06</small></article>
+          <article><span class="lineage-index">03</span><div><strong>Store</strong><h3 data-i18n="lineage.store">Reconciled PostGIS mirror</h3><p data-i18n="lineage.storeText">44/44 checks passed between governed files and the local database.</p></div><small>2026-10-08</small></article>
+          <article><span class="lineage-index">04</span><div><strong>Publish</strong><h3 data-i18n="lineage.publish">Local OGC services</h3><p data-i18n="lineage.publishText">59/59 WMS checks and 40/40 representative WFS checks. This is not claimed as a public cloud launch.</p></div><small>2026-10-08</small></article>
+          <article><span class="lineage-index">05</span><div><strong>Evidence</strong><h3 data-i18n="lineage.evidence">Analysis-ready evidence</h3><p data-i18n="lineage.evidenceText">20 evidence layers carried into subsequent Mining analysis with source lineage preserved.</p></div><small>2026-10-09</small></article>
+        </div>
+      </div>
+    </section>
+
+    <section id="cli" class="cli-section shell">
+      <div class="section-heading"><div><p class="section-kicker">04 / INCREMENTAL SYNC</p><h2 data-i18n="cli.title">Monitor lightly. Resume safely.</h2></div><p data-i18n="cli.intro">The CLI uses conditional requests and Range continuation. It never marks a partial file as complete and never assumes that a server supports resume.</p></div>
+      <div class="cli-layout">
+        <div class="terminal-card"><div class="terminal-top"><span>orelyn / local session</span><button id="copy-commands" class="terminal-copy" type="button" data-i18n="cli.copy">Copy commands</button></div><pre><code>python cli.py check
+python cli.py sync --source ga-particle-size
+python cli.py status
+python cli.py watch --interval-hours 24</code></pre><div class="terminal-notes"><span>ETag + Last-Modified</span><span>Range + .part</span><span>SHA-256</span><span>Read-only originals</span></div></div>
+        <div class="state-card"><span class="state-label">LOCAL STATE</span><h3 data-i18n="state.title">Inspect your own sync evidence</h3><p data-i18n="state.text">Select the registry-state.json generated by the CLI. It is read locally in your browser and never uploaded.</p><input id="state-file" type="file" accept="application/json,.json" hidden><button id="load-state" class="button secondary" type="button" data-i18n="state.load">Load registry-state.json</button><div id="state-summary" class="state-summary" hidden></div></div>
+      </div>
+    </section>
+
+    <section id="guide" class="guide-section shell">
+      <div class="section-heading"><div><p class="section-kicker">05 / OPERATING BOUNDARIES</p><h2 data-i18n="guide.title">Useful automation starts with clear limits.</h2></div><p data-i18n="guide.intro">ORELYN is a local acquisition and evidence tool, not a public redistribution service or a legal determination engine.</p></div>
+      <div class="guide-grid"><article><span>01</span><h3 data-i18n="guide.authorized">Authorized acquisition only</h3><p data-i18n="guide.authorizedText">Requests are limited to public or authorized endpoints, with timeouts, bounded concurrency and no credential bypass.</p></article><article><span>02</span><h3 data-i18n="guide.resume">Partial is not complete</h3><p data-i18n="guide.resumeText">A .part file records an incomplete transfer. Only a fully completed response is hashed and moved into the read-only source area.</p></article><article><span>03</span><h3 data-i18n="guide.legal">Metadata is not legal advice</h3><p data-i18n="guide.legalText">License labels are review aids. Always verify the provider’s current terms and attribution duties before reuse or publication.</p></article><article><span>04</span><h3 data-i18n="guide.local">Local evidence, not live status</h3><p data-i18n="guide.localText">The HTML snapshot is offline by design. Live availability is reported only after an explicit CLI check.</p></article></div>
+    </section>
+  </main>
+
+  <dialog id="source-dialog" class="source-dialog"><button id="close-dialog" class="dialog-close" type="button" aria-label="Close">×</button><div id="dialog-content"></div></dialog>
+  <div id="toast" class="toast" role="status" hidden></div>
+
+  <footer class="site-footer shell"><div class="footer-brand"><img src="data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHZpZXdCb3g9IjAgMCA2NCA2NCIgcm9sZT0iaW1nIiBhcmlhLWxhYmVsbGVkYnk9InRpdGxlIGRlc2MiPgogIDx0aXRsZSBpZD0idGl0bGUiPk9SRUxZTiBvcmlnaW5hbCBzdHJhdGEgbG9vcCBtYXJrPC90aXRsZT4KICA8ZGVzYyBpZD0iZGVzYyI+VGhyZWUgbmVzdGVkIG9wZW4gZ2VvbG9naWNhbCBjb250b3VycyBsaW5rZWQgYnkgb25lIGNvbnRpbnVvdXMgcHJvdmVuYW5jZSBwYXRoPC9kZXNjPgogIDxyZWN0IHdpZHRoPSI2NCIgaGVpZ2h0PSI2NCIgcng9IjE1IiBmaWxsPSIjMTExQTFDIi8+CiAgPHBhdGggZD0iTTQ3IDE3QzQwIDExIDI4IDExIDIwIDE3QzExIDI0IDEyIDM5IDIxIDQ2QzI5IDUyIDQyIDQ5IDQ3IDQyIiBmaWxsPSJub25lIiBzdHJva2U9IiNGMUY0RUQiIHN0cm9rZS13aWR0aD0iMi43IiBzdHJva2UtbGluZWNhcD0icm91bmQiLz4KICA8cGF0aCBkPSJNNDIgMjJDMzcgMTggMjggMTggMjMgMjNDMTcgMjkgMTkgMzkgMjYgNDNDMzIgNDcgNDAgNDQgNDMgMzkiIGZpbGw9Im5vbmUiIHN0cm9rZT0iI0Q1QTc1QSIgc3Ryb2tlLXdpZHRoPSIyLjciIHN0cm9rZS1saW5lY2FwPSJyb3VuZCIvPgogIDxwYXRoIGQ9Ik0zNSAyOEMzMSAyNSAyNiAyOCAyNiAzMkMyNiAzNyAzMiA0MCAzNiAzNyIgZmlsbD0ibm9uZSIgc3Ryb2tlPSIjRjFGNEVEIiBzdHJva2Utd2lkdGg9IjIuNyIgc3Ryb2tlLWxpbmVjYXA9InJvdW5kIi8+CiAgPHBhdGggZD0iTTQ3IDQybDUgMS0xLTYiIGZpbGw9Im5vbmUiIHN0cm9rZT0iI0Q1QTc1QSIgc3Ryb2tlLXdpZHRoPSIyLjciIHN0cm9rZS1saW5lY2FwPSJyb3VuZCIgc3Ryb2tlLWxpbmVqb2luPSJyb3VuZCIvPgogIDxjaXJjbGUgY3g9IjQ3IiBjeT0iMTciIHI9IjIuNSIgZmlsbD0iI0Q1QTc1QSIvPgo8L3N2Zz4K" alt="" width="34" height="34"><div><strong>ORELYN</strong><span>Independent research and development by LUCIA LEE (李镜馨)</span></div></div><div class="footer-contact"><a href="mailto:lijingxin.geo@outlook.com">lijingxin.geo@outlook.com</a><span>© 2026 LUCIA LEE</span></div></footer>
+</body>
+</html>

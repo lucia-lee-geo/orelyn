@@ -1,0 +1,97 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="description" content="ORELYN — local-first public mining data registry, license matrix, incremental sync and provenance evidence.">
+  <meta name="author" content="LUCIA LEE (李镜馨)">
+  <meta name="theme-color" content="#111a1c">
+  <title>ORELYN — Public Mining Data, with Provenance</title>
+  <link rel="icon" href="assets/orelyn-mark.svg" type="image/svg+xml">
+  <link rel="stylesheet" href="styles.css">
+  <script src="registry.js" defer></script>
+  <script src="app.js" defer></script>
+</head>
+<body>
+  <header class="site-header">
+    <a class="brand" href="index.html" aria-label="ORELYN home"><img src="assets/orelyn-mark.svg" alt="" width="36" height="36"><span><strong>ORELYN</strong><small>PUBLIC MINING DATA, WITH PROVENANCE</small></span></a>
+    <nav class="main-nav" aria-label="Primary navigation">
+      <a href="#registry" data-i18n="nav.registry">Registry</a><a href="#provenance" data-i18n="nav.provenance">Provenance</a><a href="#cli" data-i18n="nav.cli">CLI Sync</a><a href="#guide" data-i18n="nav.guide">Guide</a>
+    </nav>
+    <select id="language-select" class="language-select" aria-label="Language"><option value="en">English</option><option value="zh-CN">简体中文</option></select>
+    <span class="local-badge"><span class="status-dot"></span>LOCAL-FIRST</span>
+  </header>
+
+  <main>
+    <section class="hero shell">
+      <div class="hero-copy">
+        <p class="eyebrow"><span></span>PUBLIC MINING DATA / LOCAL-FIRST</p>
+        <h1><span data-i18n="hero.titleStart">Public data is only the start.</span><em data-i18n="hero.titleEm">Provenance makes it usable.</em></h1>
+        <p class="hero-intro" data-i18n="hero.intro">A source-aware registry for mining data acquisition, license review, incremental updates and reproducible evidence — without turning public access into a blanket usage claim.</p>
+        <div class="hero-actions"><a class="button primary" href="#registry" data-i18n="hero.explore">Explore the registry <span>↓</span></a><a class="button secondary" href="#cli" data-i18n="hero.cli">Run an incremental sync</a></div>
+        <div class="hero-principles"><span>SOURCE-AWARE</span><span>LICENSE-GATED</span><span>RESUMABLE</span></div>
+      </div>
+      <aside class="evidence-card">
+        <div class="evidence-top"><span>PROJECT EVIDENCE / 001</span><span class="evidence-status">VERIFIED LOCALLY</span></div>
+        <h2>Pine Creek / Mt Bundy</h2><p data-i18n="evidence.subtitle">Historical project evidence, not a live service connection.</p>
+        <div class="evidence-metrics"><div><strong>40</strong><span data-i18n="metric.layers">governed layers</span></div><div><strong>19</strong><span data-i18n="metric.rasters">raster layers</span></div><div><strong>44/44</strong><span data-i18n="metric.checks">reconciliations</span></div><div><strong>20</strong><span data-i18n="metric.evidence">evidence layers</span></div></div>
+        <div class="evidence-foot"><span>2026-10-08</span><span>WMS 59/59 · WFS 40/40</span></div>
+      </aside>
+    </section>
+
+    <section class="principle-strip shell"><article><span>01</span><strong data-i18n="principle.public">Public access</strong><p data-i18n="principle.publicText">The source can be reached through an authorized interface.</p></article><article><span>02</span><strong data-i18n="principle.license">Usage rights</strong><p data-i18n="principle.licenseText">License, attribution and restrictions are reviewed independently.</p></article><article><span>03</span><strong data-i18n="principle.update">Update evidence</strong><p data-i18n="principle.updateText">ETag, timestamps, byte counts and SHA-256 explain what changed.</p></article></section>
+
+    <section id="registry" class="registry-section shell">
+      <div class="section-heading"><div><p class="section-kicker">01 / SOURCE REGISTRY</p><h2 data-i18n="registry.title">Know the source before the sync.</h2></div><p data-i18n="registry.intro">Each record separates access method, legal metadata, acquisition mode and evidence date. License-pending sources are never downloaded automatically.</p></div>
+      <div class="registry-tools">
+        <label class="search-field"><span class="sr-only">Search sources</span><input id="source-search" type="search" placeholder="Search publisher, dataset or category…" data-i18n-placeholder="search.placeholder"></label>
+        <select id="license-filter" aria-label="License filter"><option value="all" data-i18n="filter.allLicenses">All license states</option><option value="open" data-i18n="filter.open">Open license metadata</option><option value="review" data-i18n="filter.review">Review required</option></select>
+        <select id="category-filter" aria-label="Category filter"><option value="all" data-i18n="filter.allCategories">All categories</option></select>
+        <label class="sync-toggle"><input id="sync-filter" type="checkbox"><span data-i18n="filter.sync">Direct sync only</span></label>
+      </div>
+      <div class="registry-summary"><span id="registry-count">8 sources</span><span data-i18n="registry.snapshot">REGISTRY SNAPSHOT · 2026-11-02</span></div>
+      <div class="table-wrap"><table class="source-table"><thead><tr><th data-i18n="table.source">Source</th><th data-i18n="table.access">Access</th><th data-i18n="table.license">License</th><th data-i18n="table.review">Review cycle</th><th data-i18n="table.action">Action</th></tr></thead><tbody id="source-rows"></tbody></table></div>
+      <div id="empty-state" class="empty-state" hidden><strong data-i18n="empty.title">No sources match these filters.</strong><button id="clear-filters" class="text-button" type="button" data-i18n="empty.clear">Clear filters</button></div>
+    </section>
+
+    <section class="license-section shell">
+      <div class="section-heading"><div><p class="section-kicker">02 / LEGAL METADATA</p><h2 data-i18n="license.title">Open to read is not open to assume.</h2></div><p data-i18n="license.intro">ORELYN records metadata to support review, not to replace legal advice or the provider’s current terms.</p></div>
+      <div class="license-grid"><article><span class="license-code">CC BY 3.0 AU</span><h3 data-i18n="license.attribution">Attribution is part of the workflow</h3><p data-i18n="license.attributionText">GA CSV records retain publisher identity, license URL and a copy-ready attribution string for technical articles and derivatives.</p></article><article><span class="license-code">CC BY 4.0</span><h3 data-i18n="license.services">Service access is not bulk permission</h3><p data-i18n="license.servicesText">WFS sources are marked for bounded queries only. ORELYN does not treat an available service as an invitation for unbounded crawling.</p></article><article class="review-card"><span class="license-code">REVIEW REQUIRED</span><h3 data-i18n="license.review">Conflicting metadata stops automation</h3><p data-i18n="license.reviewText">The Copernicus manifest contains a proprietary flag. Automatic sync stays disabled until dataset-specific terms are reconciled.</p></article></div>
+    </section>
+
+    <section id="provenance" class="provenance-section">
+      <div class="shell">
+        <div class="section-heading light"><div><p class="section-kicker">03 / PROVENANCE</p><h2 data-i18n="provenance.title">A result should explain how it came to be.</h2></div><p data-i18n="provenance.intro">The Pine Creek evidence chain is presented as historical proof, with explicit stages and dates instead of a vague “data was processed” statement.</p></div>
+        <div class="lineage-list">
+          <article><span class="lineage-index">01</span><div><strong>Acquire</strong><h3 data-i18n="lineage.acquire">Source registration</h3><p data-i18n="lineage.acquireText">30 source files registered with origin, access method and acquisition metadata.</p></div><small>2026-10-06</small></article>
+          <article><span class="lineage-index">02</span><div><strong>Clean</strong><h3 data-i18n="lineage.clean">Governance & normalization</h3><p data-i18n="lineage.cleanText">40 layers and 19 rasters derived through documented cleaning and CRS rules.</p></div><small>2026-10-06</small></article>
+          <article><span class="lineage-index">03</span><div><strong>Store</strong><h3 data-i18n="lineage.store">Reconciled PostGIS mirror</h3><p data-i18n="lineage.storeText">44/44 checks passed between governed files and the local database.</p></div><small>2026-10-08</small></article>
+          <article><span class="lineage-index">04</span><div><strong>Publish</strong><h3 data-i18n="lineage.publish">Local OGC services</h3><p data-i18n="lineage.publishText">59/59 WMS checks and 40/40 representative WFS checks. This is not claimed as a public cloud launch.</p></div><small>2026-10-08</small></article>
+          <article><span class="lineage-index">05</span><div><strong>Evidence</strong><h3 data-i18n="lineage.evidence">Analysis-ready evidence</h3><p data-i18n="lineage.evidenceText">20 evidence layers carried into subsequent Mining analysis with source lineage preserved.</p></div><small>2026-10-09</small></article>
+        </div>
+      </div>
+    </section>
+
+    <section id="cli" class="cli-section shell">
+      <div class="section-heading"><div><p class="section-kicker">04 / INCREMENTAL SYNC</p><h2 data-i18n="cli.title">Monitor lightly. Resume safely.</h2></div><p data-i18n="cli.intro">The CLI uses conditional requests and Range continuation. It never marks a partial file as complete and never assumes that a server supports resume.</p></div>
+      <div class="cli-layout">
+        <div class="terminal-card"><div class="terminal-top"><span>orelyn / local session</span><button id="copy-commands" class="terminal-copy" type="button" data-i18n="cli.copy">Copy commands</button></div><pre><code>python cli.py check
+python cli.py sync --source ga-particle-size
+python cli.py status
+python cli.py watch --interval-hours 24</code></pre><div class="terminal-notes"><span>ETag + Last-Modified</span><span>Range + .part</span><span>SHA-256</span><span>Read-only originals</span></div></div>
+        <div class="state-card"><span class="state-label">LOCAL STATE</span><h3 data-i18n="state.title">Inspect your own sync evidence</h3><p data-i18n="state.text">Select the registry-state.json generated by the CLI. It is read locally in your browser and never uploaded.</p><input id="state-file" type="file" accept="application/json,.json" hidden><button id="load-state" class="button secondary" type="button" data-i18n="state.load">Load registry-state.json</button><div id="state-summary" class="state-summary" hidden></div></div>
+      </div>
+    </section>
+
+    <section id="guide" class="guide-section shell">
+      <div class="section-heading"><div><p class="section-kicker">05 / OPERATING BOUNDARIES</p><h2 data-i18n="guide.title">Useful automation starts with clear limits.</h2></div><p data-i18n="guide.intro">ORELYN is a local acquisition and evidence tool, not a public redistribution service or a legal determination engine.</p></div>
+      <div class="guide-grid"><article><span>01</span><h3 data-i18n="guide.authorized">Authorized acquisition only</h3><p data-i18n="guide.authorizedText">Requests are limited to public or authorized endpoints, with timeouts, bounded concurrency and no credential bypass.</p></article><article><span>02</span><h3 data-i18n="guide.resume">Partial is not complete</h3><p data-i18n="guide.resumeText">A .part file records an incomplete transfer. Only a fully completed response is hashed and moved into the read-only source area.</p></article><article><span>03</span><h3 data-i18n="guide.legal">Metadata is not legal advice</h3><p data-i18n="guide.legalText">License labels are review aids. Always verify the provider’s current terms and attribution duties before reuse or publication.</p></article><article><span>04</span><h3 data-i18n="guide.local">Local evidence, not live status</h3><p data-i18n="guide.localText">The HTML snapshot is offline by design. Live availability is reported only after an explicit CLI check.</p></article></div>
+    </section>
+  </main>
+
+  <dialog id="source-dialog" class="source-dialog"><button id="close-dialog" class="dialog-close" type="button" aria-label="Close">×</button><div id="dialog-content"></div></dialog>
+  <div id="toast" class="toast" role="status" hidden></div>
+
+  <footer class="site-footer shell"><div class="footer-brand"><img src="assets/orelyn-mark.svg" alt="" width="34" height="34"><div><strong>ORELYN</strong><span>Independent research and development by LUCIA LEE (李镜馨)</span></div></div><div class="footer-contact"><a href="mailto:lijingxin.geo@outlook.com">lijingxin.geo@outlook.com</a><span>© 2026 LUCIA LEE</span></div></footer>
+</body>
+</html>
